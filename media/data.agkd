@@ -1,0 +1,270 @@
+<project>
+	<settings>
+			<width>1024.0</>
+			<height>768.0</>
+			<orientation>Landscape</>
+			<autosave>1</>
+			<autoupdate>0</>
+			<grid>0</>
+			<gridsnap>0</>
+			<gridwidth>64.0</>
+			<gridheight>64.0</>
+			<gridred>64</>
+			<gridgreen>255</>
+			<gridblue>255</>
+			<gridoriginx>0.0</>
+			<gridoriginy>0.0</>
+			<scene colours>0 255 0 </>
+			<scene sizes>0 1 1280 720 </>
+	</settings>
+</project>
+<entity>
+	<properties>
+			<type>sprite</>
+			<scene>0</>
+			<name>sprite 0</>
+			<x>3.0</>
+			<y>2.0</>
+			<size x>1026.2</>
+			<size y>772.6</>
+			<scale x>1.0</>
+			<scale y>1.0</>
+			<offset x>513.1</>
+			<offset y>386.3</>
+			<angle>0.0</>
+			<depth>5000</>
+			<visible>1</>
+			<red>255</>
+			<green>255</>
+			<blue>255</>
+			<alpha>255</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<custom></>
+			<custom></>
+			<custom></>
+			<custom></>
+			<physics>0</>
+			<fliph>0</>
+			<flipv>0</>
+			<active>0</>
+			<collision>0</>
+			<angulardamping>0.0</>
+			<centreofmassx>0</>
+			<centreofmassy>0</>
+			<canrotate>1</>
+			<damping>0.0</>
+			<friction>0.0</>
+			<isbullet>0</>
+			<issensor>0</>
+			<mass>0.0</>
+			<restitution>0.0</>
+			<image>Images/Sky-Blue-Sky.jpg</>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>sprite</>
+			<scene>0</>
+			<name>sprite 1</>
+			<x>43.0</>
+			<y>247.0</>
+			<size x>312.0</>
+			<size y>275.7</>
+			<scale x>1.0</>
+			<scale y>1.0</>
+			<offset x>156.0</>
+			<offset y>137.9</>
+			<angle>0.0</>
+			<depth>4999</>
+			<visible>1</>
+			<red>255</>
+			<green>255</>
+			<blue>255</>
+			<alpha>255</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<custom></>
+			<custom></>
+			<custom></>
+			<custom></>
+			<physics>0</>
+			<fliph>0</>
+			<flipv>0</>
+			<active>0</>
+			<collision>0</>
+			<angulardamping>0.0</>
+			<centreofmassx>0</>
+			<centreofmassy>0</>
+			<canrotate>1</>
+			<damping>0.0</>
+			<friction>0.0</>
+			<isbullet>0</>
+			<issensor>0</>
+			<mass>0.0</>
+			<restitution>0.0</>
+			<image>Images/water.png</>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>text</>
+			<scene>0</>
+			<name>text 6</>
+			<x>293.0</>
+			<y>28.0</>
+			<size x>403.0</>
+			<size y>124.8</>
+			<scale x>1.0</>
+			<scale y>1.0</>
+			<offset x>0.0</>
+			<offset y>0.0</>
+			<angle>0.0</>
+			<depth>5000</>
+			<visible>1</>
+			<red>0</>
+			<green>255</>
+			<blue>0</>
+			<alpha>255</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<custom></>
+			<custom></>
+			<custom></>
+			<custom></>
+			<text>Test Text</>
+			<alignment>0</>
+			<text size>124.8</>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>editbox</>
+			<scene>0</>
+			<name>edit box 0</>
+			<x>35.0</>
+			<y>625.0</>
+			<size x>338.0</>
+			<size y>100.0</>
+			<scale x>0.0</>
+			<scale y>0.0</>
+			<offset x>0.0</>
+			<offset y>0.0</>
+			<angle>0.0</>
+			<depth>5000</>
+			<visible>1</>
+			<red>0</>
+			<green>0</>
+			<blue>0</>
+			<alpha>255</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<custom></>
+			<custom></>
+			<custom></>
+			<custom></>
+			<text>Edit Box
+
+
+</>
+			<edit size>98.0</>
+			<edit colour red>0</>
+			<edit colour green>0</>
+			<edit colour blue>0</>
+			<edit background red>255</>
+			<edit background green>255</>
+			<edit background blue>255</>
+			<edit background alpha>255</>
+			<edit border red>0</>
+			<edit border green>0</>
+			<edit border blue>0</>
+			<edit border alpha>255</>
+			<edit border size>2.0</>
+			<edit max characters>0</>
+			<edit max lines>0</>
+			<edit multi line>0</>
+			<edit password>0</>
+			<edit cursor red>0</>
+			<edit cursor green>0</>
+			<edit cursor blue>0</>
+			<edit cursor width>3.0</>
+			<edit cursor wrap>0</>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>button</>
+			<scene>0</>
+			<name>virtual button 0</>
+			<x>796.0</>
+			<y>268.0</>
+			<size x>187.0</>
+			<size y>197.0</>
+			<scale x>1.0</>
+			<scale y>1.0</>
+			<offset x>0.0</>
+			<offset y>0.0</>
+			<angle>0.0</>
+			<depth>0</>
+			<visible>1</>
+			<red>255</>
+			<green>255</>
+			<blue>255</>
+			<alpha>255</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<button down>Default</>
+			<button up>Default</>
+			<button text>button</>
+			<button goto>0</>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>particles</>
+			<scene>0</>
+			<name>particles 0</>
+			<x>559.0</>
+			<y>400.0</>
+			<size x>100.0</>
+			<size y>100.0</>
+			<scale x>100.0</>
+			<scale y>100.0</>
+			<offset x>0.0</>
+			<offset y>0.0</>
+			<angle>0.0</>
+			<depth>10</>
+			<visible>1</>
+			<red>0</>
+			<green>0</>
+			<blue>0</>
+			<alpha>0</>
+			<locked>0</>
+			<fixed>0</>
+			<goto>0</>
+			<particle image>Default</>
+			<particle size>88.4</>
+			<particle life>10.0</>
+			<particle max>-1</>
+			<particle frequency>50</>
+			<particle emit angle>360.0</>
+			<particle face dir>0</>
+			<particle transparency>1</>
+			<particle dir x>0</>
+			<particle dir y>-1</>
+			<particle rot x>0</>
+			<particle rot y>0</>
+			<particle x1>0</>
+			<particle y1>0</>
+			<particle x2>0</>
+			<particle y2>0</>
+			<particle vel x>1</>
+			<particle vel y>10</>
+			<particle colours>1.0 128 255 0 255 </>
+	</properties>
+</entity>
