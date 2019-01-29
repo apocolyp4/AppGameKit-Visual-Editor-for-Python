@@ -16,8 +16,6 @@ def load_project(self, file_name):
     file = agk.open_to_read(file_name)
 
     counter = 0
-    self.VisualEditor_EntitiesIndex = 0
-    self.VisualEditor_Lines = []
 
     while agk.file_eof(file) == 0:
         line = agk.read_line(file)
@@ -35,8 +33,9 @@ def load_project(self, file_name):
     for data in self.project_data:
         agk.write_line(file, data.tag + " : " + data.value)
     agk.close_file(file)
+    
     # parse project data
-    self.VisualEditor_Entities = []
+    self.entities = []
     data_type = "settings"
     for data in self.project_data:
         if data.tag == "settings":
@@ -47,7 +46,7 @@ def load_project(self, file_name):
 
         if data.tag == "entity":
             data_type = "entity"
-            self.VisualEditor_Entities.append(FileEntity())
+            self.entities.append(FileEntity())
 
         elif data.tag == "/entity":
             data_type = ""
@@ -56,7 +55,7 @@ def load_project(self, file_name):
             parse_settings_data(self, data)
 
         elif data_type == "entity":
-            parse_entity_data(self, self.VisualEditor_Entities[-1], data)
+            parse_entity_data(self, self.entities[-1], data)
 
 
 
@@ -95,19 +94,19 @@ def parse_entity_data(self, entity, data):
     for tag in tags:
         if data.tag == tag:
             if data.tag == "type":
-                entity.sType = data.value
+                entity.type = data.value
             elif data.tag == "name":
-                entity.sName = data.value
+                entity.name = data.value
             elif data.tag == "font":
-                entity.sFont = data.value
+                entity.s_font = data.value
             elif data.tag == "scene":
                 entity.scene = int(data.value)
             elif data.tag == "visible":
                 entity.visible = int(data.value)
             elif data.tag == "fliph":
-                entity.flipH = int(data.value)
+                entity.flip_h = int(data.value)
             elif data.tag == "flipv":
-                entity.flipV = int(data.value)
+                entity.flip_v = int(data.value)
             elif data.tag == "x":
                 entity.x = int(float(data.value))
             elif data.tag == "y":
@@ -117,43 +116,43 @@ def parse_entity_data(self, entity, data):
                 entity.custom = resize_list(entity.custom, new_size, "")
                 entity.custom[len(entity.custom) - 1] = data.value
             elif data.tag == "animplay":
-                entity.animPlay = int(float(data.value))
+                entity.anim_play = int(float(data.value))
             elif data.tag == "animset":
-                new_size = len(entity.animationSet) + 1
-                entity.animationSet = resize_list(entity.animationSet, new_size, "")
-                entity.animationSet.animationSet[len(entity.animationSet) - 1].sName = data.value
+                new_size = len(entity.animation_set) + 1
+                entity.animation_set = resize_list(entity.animation_set, new_size, "")
+                entity.animation_set.animation_set[len(entity.animation_set) - 1].name = data.value
             elif data.tag == "animspeed":
-                entity.animationSet[len(entity.animationSet) - 1].speed = int(float(data.value))
+                entity.animation_set[len(entity.animation_set) - 1].speed = int(float(data.value))
             elif data.tag == "animloop":
-                entity.animationSet[len(entity.animationSet) - 1].loopMode = int(float(data.value))
+                entity.animation_set[len(entity.animation_set) - 1].loop_mode = int(float(data.value))
             elif data.tag == "animframe":
-                i = len(entity.animationSet)
-                new_size = len(entity.animationSet[i].frames) + 1
-                entity.animationSet[i].frames = resize_list(entity.animationSet[i].frames, new_size, AnimationFrame())
-                j = len(entity.animationSet[i].frames)
-                entity.animationSet[i].frames[j].sImage = data.value
+                i = len(entity.animation_set)
+                new_size = len(entity.animation_set[i].frames) + 1
+                entity.animation_set[i].frames = resize_list(entity.animation_set[i].frames, new_size, AnimationFrame())
+                j = len(entity.animation_set[i].frames)
+                entity.animation_set[i].frames[j].image = data.value
             elif data.tag == "image":
-                entity.sImage = agk.replace_string(data.value, "media/", "", 1)
+                entity.image = agk.replace_string(data.value, "media/", "", 1)
             elif data.tag == "subimage":
-                entity.sSubImage = data.value
+                entity.sub_image = data.value
             elif data.tag == "size x":
-                entity.sizeX = int(float(data.value))
+                entity.size_x = int(float(data.value))
             elif data.tag == "size y":
-                entity.sizeY = int(float(data.value))
+                entity.size_y = int(float(data.value))
             elif data.tag == "scale x":
-                entity.scaleX = int(float(data.value))
+                entity.scale_x = int(float(data.value))
             elif data.tag == "scale y":
-                entity.scaleY = int(float(data.value))
+                entity.scale_y = int(float(data.value))
             elif data.tag == "offset x":
-                entity.offsetX = int(float(data.value))
+                entity.offset_x = int(float(data.value))
             elif data.tag == "offset y":
-                entity.offsetY = int(float(data.value))
+                entity.offset_y = int(float(data.value))
             elif data.tag == "angle":
                 entity.angle = int(float(data.value))
             elif data.tag == "fixed":
                 entity.fixed = int(float(data.value))
             elif data.tag == "text":
-                entity.sText = entity.sText + data.value + chr(10)
+                entity.text = entity.text + data.value + chr(10)
             elif data.tag == "depth":
                 entity.depth = int(float(data.value))
             elif data.tag == "red":
@@ -167,7 +166,7 @@ def parse_entity_data(self, entity, data):
             elif data.tag == "alignment":
                 entity.alignment = int(float(data.value))
             elif data.tag == "text size":
-                entity.textSize = int(float(data.value))
+                entity.text_size = int(float(data.value))
             elif data.tag == "collision":
                 entity.collision = int(float(data.value))
 
@@ -183,117 +182,117 @@ def parse_entity_data(self, entity, data):
             elif data.tag == "physics":
                 entity.physics = int(float(data.value))
             elif data.tag == "dynamic res":
-                entity.dynamicRes = data.value
+                entity.dynamic_res = data.value
             elif data.tag == "edit size":
-                entity.editSize = int(float(data.value))
+                entity.edit_size = int(float(data.value))
             elif data.tag == "edit colour red":
-                entity.editColourRed = int(float(data.value))
+                entity.edit_colour_red = int(float(data.value))
             elif data.tag == "edit colour green":
-                entity.editColourGreen = int(float(data.value))
+                entity.edit_colour_green = int(float(data.value))
             elif data.tag == "edit colour blue":
-                entity.editColourBlue = int(float(data.value))
+                entity.edit_colour_blue = int(float(data.value))
             elif data.tag == "edit background red":
-                entity.editBackgroundRed = int(float(data.value))
+                entity.edit_background_red = int(float(data.value))
             elif data.tag == "edit background green":
-                entity.editBackgroundGreen = int(float(data.value))
+                entity.edit_background_green = int(float(data.value))
             elif data.tag == "edit background blue":
-                entity.editBackgroundBlue = int(float(data.value))
+                entity.edit_background_blue = int(float(data.value))
             elif data.tag == "edit background alpha":
-                entity.editBackgroundAlpha = int(float(data.value))
+                entity.edit_background_alpha = int(float(data.value))
             elif data.tag == "edit border red":
-                entity.editBorderRed = int(float(data.value))
+                entity.edit_border_red = int(float(data.value))
             elif data.tag == "edit border green":
-                entity.editBorderGreen = int(float(data.value))
+                entity.edit_border_green = int(float(data.value))
             elif data.tag == "edit border blue":
-                entity.editBorderBlue = int(float(data.value))
+                entity.edit_border_blue = int(float(data.value))
             elif data.tag == "edit border alpha":
-                entity.editBorderAlpha = int(float(data.value))
+                entity.edit_border_alpha = int(float(data.value))
             elif data.tag == "edit border size":
-                entity.editBorderSize = int(float(data.value))
+                entity.edit_border_size = int(float(data.value))
             elif data.tag == "edit max characters":
-                entity.editMaxCharacters = int(float(data.value))
+                entity.edit_max_characters = int(float(data.value))
             elif data.tag == "edit max lines":
-                entity.editMaxLines = int(float(data.value))
+                entity.edit_max_lines = int(float(data.value))
             elif data.tag == "edit multi line":
-                entity.editMultiLine = int(float(data.value))
+                entity.edit_multi_lines = int(float(data.value))
             elif data.tag == "edit password":
-                entity.editPassword = int(float(data.value))
+                entity.edit_password = int(float(data.value))
             elif data.tag == "edit cursor red":
-                entity.editCursorRed = int(float(data.value))
+                entity.edit_cursor_red = int(float(data.value))
             elif data.tag == "edit cursor green":
-                entity.editCursorGreen = int(float(data.value))
+                entity.edit_cursor_green = int(float(data.value))
             elif data.tag == "edit cursor blue":
-                entity.editCursorBlue = int(float(data.value))
+                entity.edit_cursor_blue = int(float(data.value))
             elif data.tag == "edit cursor width":
-                entity.editCursorWidth = int(float(data.value))
+                entity.edit_cursor_width = int(float(data.value))
             elif data.tag == "edit cursor wrap":
-                entity.editCursorWrap = int(float(data.value))
+                entity.edit_cursor_wrap = int(float(data.value))
             elif data.tag == "button down":
-                entity.buttonDown = agk.replace_string(data.value, "media/", "", 1)
+                entity.button_down = agk.replace_string(data.value, "media/", "", 1)
             elif data.tag == "button up":
-                entity.buttonUp = agk.replace_string(data.value, "media/", "", 1)
+                entity.button_up = agk.replace_string(data.value, "media/", "", 1)
             elif data.tag == "button text":
-                entity.buttonText = data.value
+                entity.button_text = data.value
             elif data.tag == "button goto":
-                entity.buttonGoto = int(float(data.value))
+                entity.button_goto = int(float(data.value))
             elif data.tag == "particle image":
-                entity.particleImage = data.value
+                entity.particle_image = data.value
             elif data.tag == "particle size":
-                entity.particleSize = int(float(data.value))
+                entity.particle_size = int(float(data.value))
             elif data.tag == "particle life":
-                entity.particleLife = int(float(data.value))
+                entity.particle_life = int(float(data.value))
             elif data.tag == "particle max":
-                entity.particleMax = int(float(data.value))
+                entity.particle_max = int(float(data.value))
             elif data.tag == "particle frequency":
-                entity.particleFrequency = int(float(data.value))
+                entity.particle_frequency = int(float(data.value))
             elif data.tag == "particle emit angle":
-                entity.particleEmitAngle = int(float(data.value))
+                entity.particle_emit_angle = int(float(data.value))
             elif data.tag == "particle face dir":
-                entity.particleFaceDirection = int(float(data.value))
+                entity.particle_face_direction = int(float(data.value))
             elif data.tag == "particle transparency":
-                entity.particleTransparency = int(float(data.value))
+                entity.particle_transparency = int(float(data.value))
             elif data.tag == "particle dir x":
-                entity.particleDirX = int(float(data.value))
+                entity.particle_dir_x = int(float(data.value))
             elif data.tag == "particle dir y":
-                entity.particleDirY = int(float(data.value))
+                entity.particle_dir_y = int(float(data.value))
             elif data.tag == "particle rot x":
-                entity.particleRotX = int(float(data.value))
+                entity.particle_rot_x = int(float(data.value))
             elif data.tag == "particle rot y":
-                entity.particleRotY = int(float(data.value))
+                entity.particle_rot_y = int(float(data.value))
             elif data.tag == "particle x1":
-                entity.particleX1 = int(float(data.value))
+                entity.particle_x1 = int(float(data.value))
             elif data.tag == "particle y1":
-                entity.particleY1 = int(float(data.value))
+                entity.particle_y1 = int(float(data.value))
             elif data.tag == "particle x2":
-                entity.particleX2 = int(float(data.value))
+                entity.particle_x2 = int(float(data.value))
             elif data.tag == "particle y2":
-                entity.particleY2 = int(float(data.value))
+                entity.particle_y2 = int(float(data.value))
             elif data.tag == "particle vel x":
-                entity.particleVelX = int(float(data.value))
+                entity.particle_vel_x = int(float(data.value))
             elif data.tag == "particle vel y":
-                entity.particleVelY = int(float(data.value))
+                entity.particle_vel_y = int(float(data.value))
             elif data.tag == "particle colours":
-                entity.particleColourKeyFrames = data.value
+                entity.particle_colour_key_frames = data.value
             elif data.tag == "particle scales":
-                entity.particleScaleKeyFrames = data.value
+                entity.particle_scale_key_frames = data.value
             elif data.tag == "particle forces":
-                entity.particleForces = data.value
+                entity.particle_forces = data.value
             elif data.tag == "angulardamping":
-                entity.angularDamping = int(float(data.value))
+                entity.angular_damping = int(float(data.value))
             elif data.tag == "centreofmassx":
-                entity.centreOfMassX = int(float(data.value))
+                entity.centre_of_mass_x = int(float(data.value))
             elif data.tag == "centreofmassy":
-                entity.centreOfMassY = int(float(data.value))
+                entity.centre_of_mass_y = int(float(data.value))
             elif data.tag == "canrotate":
-                entity.canRotate = int(float(data.value))
+                entity.can_rotate = int(float(data.value))
             elif data.tag == "damping":
                 entity.damping = int(float(data.value))
             elif data.tag == "friction":
                 entity.friction = int(float(data.value))
             elif data.tag == "isbullet":
-                entity.isBullet = int(float(data.value))
+                entity.is_bullet = int(float(data.value))
             elif data.tag == "issensor":
-                entity.isSensor = int(float(data.value))
+                entity.is_sensor = int(float(data.value))
             elif data.tag == "mass":
                 entity.mass = int(float(data.value))
             elif data.tag == "restitution":
@@ -312,13 +311,13 @@ def parse_settings_data(self, data):
     for tag in tags:
         if data.tag == tag:
             if data.tag == "width":
-                self.VisualEditor_BaseWidth = int(float((data.value)))
+                self.base_width = int(float((data.value)))
             elif data.tag == "height":
-                self.VisualEditor_BaseHeight = int(float((data.value)))
+                self.base_height = int(float((data.value)))
             elif data.tag == "custom res":
                 self.VisualEditor_CustomResolutions = data.value
             elif data.tag == "scene colours":
-                self.VisualEditor_SceneColours = data.value
+                self.scene_colours = data.value
             elif data.tag == "orientation":
                 if data.value == "Portrait":
                     agk.set_orientation_allowed(1, 1, 0, 0)

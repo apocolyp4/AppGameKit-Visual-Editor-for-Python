@@ -11,11 +11,13 @@ The test project is loaded from the main.agc file.
 
 Commands:
 	
-VisualEditor(int load)
+# Setups up the editor
+vis_editor = VisualEditor(0)
 
-visual_editor = VisualEditor(0)
+    # Load new scene first scene is 0
+    vis_editor.open_scene(0)
 
-visual_editor.open_scene(0)
-
-sprite = vis_editor.get_entity_id("sprite 8", 0)
-kind = vis_editor.get_entity_kind("sprite 8", 0)
+	# Get Sprite ID
+    sprite = vis_editor.get_entity_id("sprite 1", 0)
+    # Get Entity Type
+    kind = vis_editor.get_entity_kind("sprite 1", 0)
