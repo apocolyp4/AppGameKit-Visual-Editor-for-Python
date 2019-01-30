@@ -23,8 +23,9 @@ def get_kind(self, entity_name, scene_id):
 
     for scene_entity in self.scenes[scene_id].entities:
         entity = self.entities[scene_entity.index]
+        entity_types = ["Sprite", "Text", "Edit Box", "Virtual Button", "Particles"]
         if entity.name == entity_name:
-            return scene_entity.kind
+            return entity_types[scene_entity.kind - 1]
 
     agk.message("The entity " + entity_name + " does not exist. Please note the scene index begins at 0.")
     return "NULL"

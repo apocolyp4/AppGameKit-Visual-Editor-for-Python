@@ -14,6 +14,7 @@ def find_image(self, s_image):
 
     return False
 
+
 def load_image(self, s_image):
     # look for the image in the list
     # if it has no ID then it needs to be loaded
