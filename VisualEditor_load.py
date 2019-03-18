@@ -11,7 +11,7 @@ class FileData:
 def load_project(self, file_name):
     # load a project
     if agk.get_file_exists(file_name) == 0:
-        agk.message("Error - project file cannot be opened")
+        agk.message("Error: Project file cannot be opened")
 
     file = agk.open_to_read(file_name)
 
